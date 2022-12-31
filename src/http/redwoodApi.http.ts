@@ -5,14 +5,23 @@ const host = import.meta.env.VITE_REDWOOD_API_URL
 
 export async function getBetExecutions(): Promise<BetExecution[]> {
   const params = {
-    'filter[order][]': 'createdAt DESC',
-    'filter[include][]': 'odds',
+    order: ['createdAt DESC'],
+    include: [
+      {
+        relation: 'odds',
+        scope: {
+          include: [{ relation: 'fixture' }],
+        },
+      },
+    ],
   }
+  const paramsEncoded = encodeURIComponent(JSON.stringify(params))
 
   return axios
-    .get(`${host}/bet-executions`, { params })
+    .get(`${host}/bet-executions?filter=${paramsEncoded}`)
     .then((response) => response.data)
-    .catch(() => {
+    .catch((e) => {
+      console.log(e.message)
       throw new Error('Failed to get bet executions')
     })
 }

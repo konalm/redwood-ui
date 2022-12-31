@@ -14,6 +14,7 @@
     <td>
       {{ priceMatched }}
     </td>
+    <td>{{ fixtureCommenceTime }}</td>
   </tr>
 </template>
 
@@ -28,6 +29,9 @@ const index = ref<number>(props.index)
 const createdAt = ref<string>(readableDate(props.stats.createdAt))
 const odds = ref<number>(props.stats.odds?.exchangeOdds || null)
 const betValue = ref<number>(props.stats.odds?.betValue || null)
+const fixtureCommenceTime = ref<string>(
+  readableDate(props.stats.odds?.fixture?.commenceTime),
+)
 
 const settledOrder = computed(() => {
   const { marketId, selectionId } = abstractIds(props.stats.id)

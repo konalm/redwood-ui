@@ -20,6 +20,7 @@
         <th scope="col">Bet Value</th>
         <th scope="col">Settled</th>
         <th scope="col">Price Matched</th>
+        <th scope="col">Fixture Commence Time</th>
       </tr>
     </thead>
 
@@ -64,6 +65,9 @@ onMounted(() => {
 
 async function loadBetExecutions() {
   betsExecuted.value = await getBetExecutions()
+
+  console.log('example ---->')
+  console.log(betsExecuted.value[0])
 }
 
 async function loadSettledOrders() {
