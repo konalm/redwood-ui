@@ -16,11 +16,14 @@
         <th scope="col">Fixture</th>
         <th scope="col">Outcome</th>
         <th scope="col">Order Placed At</th>
+        <th scope="col">Sharp Odds</th>
         <th scope="col">Exchange Odds</th>
+        <th scope="col">Exchange UI Odds</th>
         <th scope="col">Bet Value</th>
         <th scope="col">Settled</th>
         <th scope="col">Price Matched</th>
         <th scope="col">Fixture Commence Time</th>
+        <th scope="col">Profit</th>
       </tr>
     </thead>
 
@@ -65,9 +68,6 @@ onMounted(() => {
 
 async function loadBetExecutions() {
   betsExecuted.value = await getBetExecutions()
-
-  console.log('example ---->')
-  console.log(betsExecuted.value[0])
 }
 
 async function loadSettledOrders() {

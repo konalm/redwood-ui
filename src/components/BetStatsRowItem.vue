@@ -5,7 +5,9 @@
     <td>{{ stats.fixture }}</td>
     <td>{{ stats.outcome }}</td>
     <td>{{ createdAt }}</td>
+    <td>{{ sharpOddsAverage }}</td>
     <td>{{ odds }}</td>
+    <td>{{ exchangeUIOdds }}</td>
     <td>{{ betValue }}</td>
     <td>
       <i v-if="hasSettledOrder" class="fa-solid fa-check text-success"></i>
@@ -19,6 +21,7 @@
       {{ priceMatched }}
     </td>
     <td>{{ fixtureCommenceTime }}</td>
+    <td>{{ profit }}</td>
   </tr>
 </template>
 
@@ -31,7 +34,9 @@ const props = defineProps(['stats', 'index', 'settledOrders'])
 const stats = ref<any[]>(props.stats)
 const index = ref<number>(props.index)
 const createdAt = ref<string>(readableDateTime(props.stats.createdAt))
+const sharpOddsAverage = ref<number>(props.stats.odds?.sharpOddsAverage || null)
 const odds = ref<number>(props.stats.odds?.exchangeOdds || null)
+const exchangeUIOdds = ref<number>(props.stats.odds?.exchangeUIOdds || null)
 const betValue = ref<number>(props.stats.odds?.betValue || null)
 
 const fixtureCommenceTime = ref<string>(
@@ -61,6 +66,8 @@ const hasStarted = computed(() => {
 
   return new Date(commenceTime) < now
 })
+
+const profit = computed(() => settledOrder.value?.profit)
 
 function readableDate(date: Date) {
   return dayjs(date).format('DD MM YYYY')

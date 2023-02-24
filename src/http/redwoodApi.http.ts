@@ -19,7 +19,11 @@ export async function getBetExecutions(): Promise<BetExecution[]> {
 
   return axios
     .get(`${host}/bet-executions?filter=${paramsEncoded}`)
-    .then((response) => response.data)
+    .then((response) => {
+      console.log(response.data[0])
+
+      return response.data
+    })
     .catch((e) => {
       console.log(e.message)
       throw new Error('Failed to get bet executions')
