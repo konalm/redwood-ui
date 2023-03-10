@@ -12,3 +12,8 @@ export interface BetExecution {
   createdAt: Date
   odds: Odds
 }
+
+export enum OrderSide {
+  Back = 'BACK',
+  Lay = 'LAY',
+}

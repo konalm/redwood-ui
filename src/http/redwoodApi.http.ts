@@ -1,11 +1,14 @@
 import axios from 'axios'
-import type { BetExecution } from '@/types'
+import type { BetExecution, OrderSide } from '@/types'
 
 const host = import.meta.env.VITE_REDWOOD_API_URL
 
-export async function getBetExecutions(): Promise<BetExecution[]> {
+export async function getBetExecutions(
+  side: OrderSide,
+): Promise<BetExecution[]> {
   const params = {
     order: ['createdAt DESC'],
+    where: { side },
     include: [
       {
         relation: 'odds',
@@ -20,8 +23,6 @@ export async function getBetExecutions(): Promise<BetExecution[]> {
   return axios
     .get(`${host}/bet-executions?filter=${paramsEncoded}`)
     .then((response) => {
-      console.log(response.data[0])
-
       return response.data
     })
     .catch((e) => {

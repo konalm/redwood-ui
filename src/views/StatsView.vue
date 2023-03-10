@@ -23,6 +23,7 @@
         <th scope="col">Settled</th>
         <th scope="col">Price Matched</th>
         <th scope="col">Fixture Commence Time</th>
+        <th scope="col">Side</th>
         <th scope="col">Profit</th>
       </tr>
     </thead>
@@ -49,7 +50,7 @@ import {
   getBetExecutions,
   getSettledClearedOrders,
 } from '../http/redwoodApi.http'
-import type { BetExecution } from '../types'
+import { OrderSide, type BetExecution } from '../types'
 import BetStatsRowItem from '../components/BetStatsRowItem.vue'
 
 let betsExecuted = ref<BetExecution[]>([])
@@ -67,7 +68,11 @@ onMounted(() => {
 })
 
 async function loadBetExecutions() {
-  betsExecuted.value = await getBetExecutions()
+  console.log('load bet executions ()');
+  console.log(OrderSide);
+
+  // @ts-ignore
+  betsExecuted.value = await getBetExecutions(OrderSide.Lay)
 }
 
 async function loadSettledOrders() {

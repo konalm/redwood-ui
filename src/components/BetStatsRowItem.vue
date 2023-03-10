@@ -21,6 +21,7 @@
       {{ priceMatched }}
     </td>
     <td>{{ fixtureCommenceTime }}</td>
+    <td>{{ side }}</td>
     <td>{{ profit }}</td>
   </tr>
 </template>
@@ -29,7 +30,7 @@
 import { computed, ref, defineProps } from 'vue'
 import dayjs from 'dayjs'
 
-const props = defineProps(['stats', 'index', 'settledOrders'])
+const props = defineProps(['stats', 'index', 'settledOrders', 'side'])
 
 const stats = ref<any[]>(props.stats)
 const index = ref<number>(props.index)
@@ -38,6 +39,7 @@ const sharpOddsAverage = ref<number>(props.stats.odds?.sharpOddsAverage || null)
 const odds = ref<number>(props.stats.odds?.exchangeOdds || null)
 const exchangeUIOdds = ref<number>(props.stats.odds?.exchangeUIOdds || null)
 const betValue = ref<number>(props.stats.odds?.betValue || null)
+const side = ref<string>(props.stats.side || null)
 
 const fixtureCommenceTime = ref<string>(
   readableDateTime(props.stats.odds?.fixture?.commenceTime),
