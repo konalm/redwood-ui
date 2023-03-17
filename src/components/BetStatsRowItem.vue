@@ -7,7 +7,7 @@
     <td>{{ createdAt }}</td>
     <td>{{ sharpOddsAverage }}</td>
     <td>{{ odds }}</td>
-    <td>{{ exchangeUIOdds }}</td>
+    <td>{{ exchangeUIOdds }} / {{ exchangeUILayOdds }}</td>
     <td>{{ betValue }}</td>
     <td>
       <i v-if="hasSettledOrder" class="fa-solid fa-check text-success"></i>
@@ -22,6 +22,7 @@
     </td>
     <td>{{ fixtureCommenceTime }}</td>
     <td>{{ side }}</td>
+    <td>{{ strategy }}</td>
     <td>{{ profit }}</td>
   </tr>
 </template>
@@ -38,8 +39,12 @@ const createdAt = ref<string>(readableDateTime(props.stats.createdAt))
 const sharpOddsAverage = ref<number>(props.stats.odds?.sharpOddsAverage || null)
 const odds = ref<number>(props.stats.odds?.exchangeOdds || null)
 const exchangeUIOdds = ref<number>(props.stats.odds?.exchangeUIOdds || null)
+const exchangeUILayOdds = ref<number>(
+  props.stats.odds?.exchangeUILayOdds || null,
+)
 const betValue = ref<number>(props.stats.odds?.betValue || null)
 const side = ref<string>(props.stats.side || null)
+const strategy = ref<string>(props.stats.strategy || null)
 
 const fixtureCommenceTime = ref<string>(
   readableDateTime(props.stats.odds?.fixture?.commenceTime),

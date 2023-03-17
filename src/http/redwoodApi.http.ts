@@ -23,6 +23,7 @@ export async function getBetExecutions(
   return axios
     .get(`${host}/bet-executions?filter=${paramsEncoded}`)
     .then((response) => {
+      console.log('response row e.g ', response.data[0])
       return response.data
     })
     .catch((e) => {

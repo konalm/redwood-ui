@@ -24,6 +24,7 @@
         <th scope="col">Price Matched</th>
         <th scope="col">Fixture Commence Time</th>
         <th scope="col">Side</th>
+        <th scope="col">Strategy</th>
         <th scope="col">Profit</th>
       </tr>
     </thead>
