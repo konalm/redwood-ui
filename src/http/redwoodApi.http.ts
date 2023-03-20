@@ -5,10 +5,11 @@ const host = import.meta.env.VITE_REDWOOD_API_URL
 
 export async function getBetExecutions(
   side: OrderSide,
+  strategy: string,
 ): Promise<BetExecution[]> {
   const params = {
     order: ['createdAt DESC'],
-    where: { side },
+    where: { side, strategy },
     include: [
       {
         relation: 'odds',
