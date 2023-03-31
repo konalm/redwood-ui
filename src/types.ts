@@ -11,6 +11,7 @@ export interface BetExecution {
   outcome: string
   createdAt: Date
   odds: Odds
+  strategy: string
 }
 
 export enum OrderSide {
